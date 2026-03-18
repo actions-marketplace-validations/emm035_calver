@@ -34,7 +34,7 @@ jobs:
             July
             January
       - run: git ls-remote --tags | grep refs/tags/${{ steps.version.outputs.new_tag }}
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v8
         if: always() && steps.version.outcome == 'success'
         with:
           script: |
@@ -56,7 +56,7 @@ jobs:
           expect="refs/tags/${{ github.ref_name }}/v""$(date '+%y.%-m')"".0"
           echo "Expecting tag '$expect' to exist"
           git ls-remote --tags | grep "$expect"
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v8
         if: always() && steps.version.outcome == 'success'
         with:
           script: |
